@@ -1,5 +1,5 @@
 # Ex4(A) AVL Tree - Insertion
-## DATE: 28/4/2025
+## DATE: 
 ## AIM:
 To write a C function to insert the elements in an AVL Tree.
 
