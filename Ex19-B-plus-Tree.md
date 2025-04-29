@@ -1,82 +1,57 @@
-# Ex4(E) AVL Tree - Deletion
-## DATE:
+# Ex4(D) B+ Tree
+## DATE: 27/4/2025
 ## AIM:
-To write a C function to delete an element from an AVL Tree.
+To write a C function to traverse the elements in a B+ Tree.
+
 ## Algorithm
-1. Search for the node to delete starting from the root. 
-2. Delete the node using standard BST rules. 
-3. Update the height of the affected nodes. 
-4. Calculate the balance factor of each updated node. 
-5. Perform rotations if the node is unbalanced. 
-6. Continue until the tree is balanced again.
-7. 
+1. Start 
+2. Iterate through each element in the node's data array. 
+3. If the node is not a leaf, recursively call traverse on the current child pointer. 
+4. Print the current data element. 
+5. After the loop, if the node is not a leaf, traverse the last child pointer. 
+6. Return after completing the traversal. 
+7. End  
+
 ## Program:
 ```
 /*
-Program to find and display the priority of the operator in the given Postfix expression
-Developed by: Rahul V 
-RegisterNumber: 212223040163
+Program to traverse the elements in a B+ Tree.
+Developed by: Rahul V
+RegisterNumber:  212223040163
 */
-node * Delete(node *T,int x) 
+struct B_TreeNode 
 { 
-node *p; 
-if(T==NULL) 
+int *data; 
+struct B_TreeNode **child_ptr; 
+int leaf; 
+int n; 
+}; 
+struct B_TreeNode *root = NULL, *np = NULL, *x = NULL;*/ 
+ 
+void traverse(struct B_TreeNode *p) 
 { 
-return NULL; 
+int i; 
+for(i=0;i<p->n;i++) 
+{ 
+if(p->leaf==0) 
+{ 
+traverse(p->child_ptr[i]); 
 } 
-else 
-if(x > T->data) // insert in right subtree 
-{ 
-T->right=Delete(T->right,x); 
-if(BF(T)==2) 
-{ 
-if(BF(T->left)>=0) 
-T=LL(T); 
-else 
-T=LR(T); 
-}} 
-else 
-if(x<T->data) 
-{ 
-T->left=Delete(T->left,x); 
-if(BF(T)==-2) //Rebalance during windup 
-{ 
-if(BF(T->right)<=0) 
-T=RR(T); 
-else 
-T=RL(T); 
-}} 
-else 
-  
-  
-{ 
-//data to be deleted is found 
-if(T->right!=NULL) 
-{ //delete its inorder succesor 
-p=T->right; 
-while(p->left!= NULL) 
-p=p->left; 
-T->data=p->data; 
-T->right=Delete(T->right,p->data); 
-if(BF(T)==2)//Rebalance during windup 
-{ 
-if(BF(T->left)>=0) 
-T=LL(T); 
-else 
-T=LR(T);}} 
-else 
-return(T->left); 
+printf("%d ",p->data[i]); 
 } 
-T->ht=height(T); 
-return(T); 
+if(p->leaf==0) 
+{ 
+traverse(p->child_ptr[i]); 
 } 
+}
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/9483ef24-e2a3-4f53-8584-87920281ce22)
+![image](https://github.com/user-attachments/assets/be479487-a127-44b2-8f68-334ef8ef1b3c)
 
 
 
 ## Result:
 
-Thus, the C program to delete an element from an AVL Tree is implemented successfully.
+Thus, the function to traverse the elements in a B+ Tree is implemented successfully.
+
